@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-PushStartToRichWorker-19B74928-6549-41FC-A713-52C01A61ADB0</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.2" />
+    <PackageReference Include="Unosquare.Raspberry.IO" Version="0.27.1" />
+    <PackageReference Include="Unosquare.WiringPi" Version="0.5.1" />
+  </ItemGroup>
+</Project>

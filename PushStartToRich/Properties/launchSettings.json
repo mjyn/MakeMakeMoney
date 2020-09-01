@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PushStartToRich": {
+      "commandName": "Project",
+      "commandLineArgs": "JYCHUNI01 192.168.1.100:5000"
+    }
+  }
+}
