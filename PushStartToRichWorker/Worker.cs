@@ -85,7 +85,7 @@ namespace PushStartToRichWorker
 
             connection.On<string, string>("Coin", (inputcabid, count) =>
             {
-                _logger.LogInformation($"{count} coin(s) inserted at {DateTimeOffset.Now}.");
+                _logger.LogInformation($"{count} coin(s) inserted, at: {DateTimeOffset.Now}");
                 if (inputcabid != cabid) return;
                 int cnt = int.Parse(count);
                 Gpio.Coin(cnt);
@@ -95,12 +95,13 @@ namespace PushStartToRichWorker
             try
             {
                 await connection.StartAsync();
-                Console.WriteLine("Connection started");
+                _logger.LogInformation($"Connection started, at: {DateTimeOffset.Now}");
                 Gpio.SetConnectionStatus(true);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError($"Initial connection failed: {ex.Message}. at: { DateTimeOffset.Now}");
+                Environment.Exit(-1);
                 return;
             }
 
