@@ -18,7 +18,7 @@ namespace PushStartToRichWorker
             InProgress = false;
         }
         static bool InProgress;
-        public static int Coin(int count)
+        public static int Coin(int count, int low_time, int high_time)
         {
             if (InProgress) return -1;
             else InProgress = true;
@@ -31,11 +31,11 @@ namespace PushStartToRichWorker
             {
                 Console.WriteLine(1);
                 blinkingPin.Write(true);
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(high_time);
 
                 Console.WriteLine(0);
                 blinkingPin.Write(false);
-                System.Threading.Thread.Sleep(300);
+                System.Threading.Thread.Sleep(low_time);
             }
             InProgress = false;
             return 0;

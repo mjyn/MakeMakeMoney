@@ -83,12 +83,22 @@ namespace PushStartToRichWorker
                 return Task.CompletedTask;
             };
 
-            connection.On<string, string>("Coin", (inputcabid, count) =>
+            connection.On<string, string>("Coin", (inputcabid, insertinfo) =>
             {
-                _logger.LogInformation($"{count} coin(s) inserted, at: {DateTimeOffset.Now}");
+                int[] insertinfoarr = { }; // count, low-time-ms, high-time-ms
+                try
+                {
+                    insertinfoarr = insertinfo.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(q => int.Parse(q.Trim())).ToArray();
+                    if (insertinfoarr.Length != 3) throw new Exception("");
+                }
+                catch (Exception)
+                {
+                    _logger.LogInformation($"Coin method input invalid, at: {DateTimeOffset.Now}");
+                }
+
+                _logger.LogInformation($"{insertinfoarr[0]} coin(s) inserted, low-time: {insertinfoarr[1]}, high-time: {insertinfoarr[2]} at: {DateTimeOffset.Now}");
                 if (inputcabid != cabid) return;
-                int cnt = int.Parse(count);
-                Gpio.Coin(cnt);
+                Gpio.Coin(insertinfoarr[0], insertinfoarr[1], insertinfoarr[2]);
             });
 
 
