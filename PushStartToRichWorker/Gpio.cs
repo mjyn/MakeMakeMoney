@@ -29,11 +29,9 @@ namespace PushStartToRichWorker
 
             for (var i = 0; i < count; i++)
             {
-                Console.WriteLine(1);
                 blinkingPin.Write(true);
                 System.Threading.Thread.Sleep(high_time);
 
-                Console.WriteLine(0);
                 blinkingPin.Write(false);
                 System.Threading.Thread.Sleep(low_time);
             }
