@@ -1,4 +1,11 @@
-﻿[Unit]
+﻿# sudo raspi-config set timezone
+# /etc/systemd/system/pstr.service
+# sudo systemctl enable pstr.service
+# sudo systemctl start pstr.service
+# crontab for root:
+# 35 21 * * * /sbin/shutdown -h now
+
+[Unit]
 Description=Push Start To Rich client worker service
 
 [Service]
